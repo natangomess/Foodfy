@@ -1,0 +1,43 @@
+{% extends "layout.njk" %}
+
+{% block head %}
+
+  <title> Inicio - Foodfy </title>
+
+{% endblock %}
+
+{% block content %}
+
+  <div class="box">
+    <div class="box__content">
+    <h1> {{ index.title_box }} </h1>
+    <p> {{ index.text_box }}  </p>
+    </div>
+      <div class="box__image-container">
+        <img src="{{ index.img_box }}" alt="Imagem do chef">
+      </div>
+  </div>
+  
+  <div class="more">
+    <h1> {{ index.title_more }} </h1>
+  </div>
+
+  <section class="cards">
+
+    {% for more in index.mores %}
+      <div class="card" id="{{loop.index - 1}}">
+        <div class="card__image-container">
+          <img src="{{more.img_more}}" alt="Imagem de {{more.name}}">
+        </div>
+        <div class="card__content">
+          {{more.name}}
+        </div>
+        <div class="card__info">
+          {{more.cooker}}
+        </div>
+      </div>
+    {% endfor %}
+  </section>
+
+  <script src="/scripts.js"></script>
+{% endblock %}

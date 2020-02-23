@@ -1,0 +1,22 @@
+{% extends "layout.njk" %}
+
+{% block head %}
+
+  <title> Sobre - Foodfy </title>
+
+{% endblock %}
+
+{% block content %}
+    <section class="texts">
+        <h1> {{ about.title_about }} </h1>
+        <p> {{ about.paragraph1_about }} </p>
+        <p> {{ about.paragraph2_about }} </p>
+        
+        <h1> {{ about.title_started }} </h1>
+        <p> {{ about.paragraph1_started }} </p>
+        <p> {{ about.paragraph2_started }} </p>
+        
+        <h1> {{ about.title_recipes }} </h1>
+        <p id="space"> {{ about.paragraph_recipes }} </p>
+    </section>
+{% endblock %}
