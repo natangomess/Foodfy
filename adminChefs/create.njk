@@ -1,0 +1,17 @@
+{% extends "adminLayout.njk" %}
+
+{% block content %}
+
+  <link rel="stylesheet" href="./createStyles.css">
+
+  <form class="card" method="POST" action="/adminChefs">
+    <section class="details">
+
+      <h2>Novo Chef</h2>
+
+      {% include 'adminChefs/fields.njk' %}
+
+    </section>
+  </form>
+
+{% endblock content %}

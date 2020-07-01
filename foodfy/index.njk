@@ -1,0 +1,57 @@
+{% extends "layout.njk" %}
+
+{% block head %}
+
+  <title>Inicio - Foodfy</title>
+
+{% endblock %}
+
+{% block content %}
+
+  <header>
+    <div class="links">
+      <img src="/assets/logo.png" alt="Imagem de Foodfy">
+      <a href="/index">Inicio</a>
+      <a href="/about">Sobre</a>
+      <a href="/recipes">Receitas</a>
+      <a href="/chefs">Chefs</a>
+    </div>
+    <div class="admin">
+      <a href="/adminRecipes">Painel Administrativo</a>
+    </div>
+  </header>
+
+  <div class="box">
+    <div class="box__content">
+    <h1>{{ index.title_box }}</h1>
+    <p>{{ index.text_box }}</p>
+    </div>
+      <div class="box__image-container">
+        <img src="{{ index.img_box }}" alt="Imagem do chef">
+      </div>
+  </div>
+  
+  <div class="more">
+    <h1>{{ index.title_more }}</h1>
+  </div>
+
+  <section class="recipeCards">
+    {% for recipe in recipes %}
+      <div class="recipeCard">
+        <div class="recipeCard__image-container">
+          <a href="/recipes/{{recipe.id}}">
+          <img src="{{recipe.image}}" alt="Imagem de {{recipe.title}}">
+          </a>
+        </div>
+        <div class="recipeCard__content">
+          {{recipe.title}}
+        </div>
+        <div class="recipeCard__info">
+          Por {{recipe.chef_name}}
+        </div>
+      </div>
+    {% endfor %}
+  </section>
+
+  <script src="/scripts.js"></script>
+{% endblock %}

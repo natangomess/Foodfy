@@ -1,0 +1,110 @@
+{% extends "adminLayout.njk" %}
+
+{% block content %}
+
+  <div class="card">
+    <section class="details">
+      <form method="POST" action="/adminRecipes?_method=PUT">
+      
+        <h2>Editar Receita</h2>
+
+        <div class="item">
+          <div>Imagem da Receita</div>
+            <div>
+              <input
+              type="url"
+              name="image"
+              placeholder="http://"
+              value="{{recipe.image}}">
+            </div>
+        </div>
+
+        <div class="item">
+          <div>Chef</div>
+          <div>
+            <select name="chef">
+              {% for chef in chefOptions %}
+                <option value="{{chefs.id}}" {% if member.chef_id == chefs.id %} selected {% endif %}>
+                  {{chef.name}}
+                </option>
+              {% endfor %}
+            </select>
+          </div>
+        </div>
+
+        <div class="item">
+          <div>Nome da Receita</div>
+          <div>
+            <input
+            type="text"
+            name="title"
+            placeholder="Digite o nome da receita secreta"
+            value="{{recipe.title}}">
+          </div>
+        </div>
+
+        <div id="fieldIngredients">
+          <div>Ingredientes</div>
+          <div class="fieldIngredient">
+            {% for ingredient in recipe.ingredients %}
+            <input
+            type="text"
+            name="ingredients[]"
+            value="{{ingredient}}"
+            placeholder="Adicione um ingrediente secreto" />
+            {% endfor %}
+          </div>
+        </div>
+        <button type="button" class="add-ingredient">Adicionar Ingrediente</button>
+
+        <div id="fieldPreparations">
+          <div>Modo de Preparo</div>
+          <div class="fieldPreparation">
+            {% for preparations in recipe.preparation %}
+            <input
+            type="text"
+            name="preparation[]"
+            value="{{preparations}}"
+            placeholder="Adicione um passo" />
+            {% endfor %}
+          </div>
+        </div>
+        <button type="button" class="add-preparation">Adicionar Novo Passo</button>
+
+        <div class="item">
+          <div>Informações Adicionais</div>
+          <div>
+            <textarea
+            name="information"
+            placeholder="Caso tenha observações adicionais a fazer, escreva aqui!"
+            cols="30"
+            rows="10">{{recipe.information}}</textarea>
+          </div>
+        </div>
+
+        <input
+        type="hidden"
+        name="id"
+        value="{{recipe.id}}">
+
+        <button class="save" type="submit">Salvar Receita</button>
+
+      </form>
+
+      <form id="form-delete" method="POST" action="/adminRecipes?_method=DELETE">
+        <input
+        type="hidden"
+        name="id"
+        value="{{recipe.id}}">
+
+        {% include 'confirmRecipe.njk' %}
+        <div class="buttons">
+          <button class="button-delete" type="submit">Deletar</button>
+        </div>
+      </form>
+    </section>
+  </div>
+
+  <script src="/scriptRecipes.js"></script>
+
+{% endblock content %}

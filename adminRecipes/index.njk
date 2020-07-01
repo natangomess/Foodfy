@@ -1,0 +1,52 @@
+{% extends "adminLayout.njk" %}
+
+{% block head %}
+
+  <title>Gerenciador de Receitas - Foodfy</title>
+
+{% endblock %}
+
+{% block content %} 
+
+  <div class="top">
+    <h1>Gerenciar Receitas</h1>
+    <a href="/adminRecipes/create">Nova</a>
+    <form action="/adminRecipes" method="GET">
+        <input
+        type="text"
+        name="filter"
+        placeholder="Por Nome da Receita"
+        value="{{filter}}"
+        >
+        <button class="buttons" type="submit">Filtrar</button>
+      </form>
+  </div>
+
+  <div class="list-container">
+    <section class="RecipeCards" id="adminCards">
+      {% for recipe in recipes %}
+        <div class="RecipeCard">
+            <div class="RecipeCard__image-container">
+              <img src="{{recipe.image}}" alt="Imagem de {{recipe.title}}">
+            </div>
+            <div class="RecipeCard__content">
+              {{recipe.title}}
+              <div class="RecipeCard__info">
+                Por {{recipe.chef_name}}
+              </div>
+              <div>
+                <a href="/adminRecipes/{{recipe.id}}">Visualizar</a>
+              </div>
+            </div>
+        </div>
+      {% endfor %}
+    </section>
+  </div>
+
+    <div
+      class="pagination"
+      data-page={{pagination.page}}
+      data-total={{pagination.total}}
+      data-filter={{filter}}
+    ></div>
+{% endblock %}
