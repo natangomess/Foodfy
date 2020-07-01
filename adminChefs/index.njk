@@ -1,0 +1,44 @@
+{% extends "adminLayout.njk" %}
+
+{% block content %}
+
+  <div class="top">
+    <h1>Gerenciar Chefs</h1>
+    <a href="/adminChefs/create">Novo</a>
+    <form action="/adminChefs" method="GET">   
+      <input
+      type="text"
+      name="filter"
+      placeholder="Por Nome do Chef"
+      value="{{filter}}"
+      >
+      <button class="buttons" type="submit">Filtrar</button>
+    </form>
+  </div>
+
+  <div class="list-container">
+    <section class="chefCards" id="adminCards">
+      {% for chef in chefs %}
+        <div class="chefCard">
+          <div class="chefCard__image-container">
+            <img src="{{chef.avatar_url}}" alt="Imagem de {{chef.name}}">
+          </div>
+          <div class="chefCard_info">
+            <div>
+              {{chef.name}}
+            </div>
+            <a href="/adminChefs/{{chef.id}}">Visualizar</a>
+          </div>
+        </div>
+      {% endfor %}
+    </section>
+
+    <div
+      class="pagination"
+      data-page={{pagination.page}}
+      data-total={{pagination.total}}
+      data-filter={{filter}}
+    ></div>
+  </div>
+
+{% endblock %}

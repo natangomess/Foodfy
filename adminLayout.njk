@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+
+    {% block head %}
+
+      <title>Gerenciador de Chefs - Foodfy</title>
+
+    {% endblock %}
+    
+    <link rel="stylesheet" href="/adminStyles.css">
+
+  </head>
+
+  <body>
+    <header>
+      <div class="adminHeader">
+        <img src="/assets/adminLogo.png" alt="Imagem de Foodfy">
+        <a href="/adminRecipes">RECEITAS</a>
+        <a href="/adminChefs">CHEFS</a>
+      </div>
+    </header>
+
+    {% block content %}
+      
+
+    {% endblock %}
+
+    <div class="msg">
+       <footer>
+          <p>Todos direitos reservados, receitas Foodfy.</p>
+      </footer>
+    </div>
+
+    <script src="/adminScripts.js"></script>
+  </body>
+</html>
